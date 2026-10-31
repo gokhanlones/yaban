@@ -123,7 +123,6 @@
     .sidebar-item {
       display: flex;
       align-items: center;
-      gap: 14px;
       padding: 14px 20px;
       cursor: pointer;
       font-size: 15px;
@@ -135,7 +134,6 @@
       text-align: left;
     }
     .sidebar-item:hover { background: rgba(255,255,255,0.06); }
-    .sidebar-item .item-icon { font-size: 18px; }
     .sidebar-bottom {
       padding: 12px 0;
       border-top: 1px solid rgba(255,255,255,0.08);
@@ -204,21 +202,21 @@
       </div>
     </div>
 
-        <div class="sidebar-menu">
+    <div class="sidebar-menu">
       <button class="sidebar-item" onclick="window.location.href='avlaklar.html'">
-        <span class="item-icon">🗺️</span> Avlaklar
+        Avlaklar
       </button>
       <button class="sidebar-item" onclick="window.location.href='turler.html'">
-        <span class="item-icon">🦌</span> Türler
+        Türler
       </button>
       <button class="sidebar-item">
-        <span class="item-icon">⚙️</span> Ayarlar
+        Ayarlar
       </button>
-        </div>
+    </div>
 
     <div class="sidebar-bottom">
       <button class="sidebar-item logout" id="logout-btn">
-        <span class="item-icon">🚪</span> Çıkış Yap
+        Çıkış Yap
       </button>
     </div>
   </div>
@@ -237,11 +235,10 @@
   <!-- İÇERİK -->
   <div class="content"></div>
 
-    <!-- BOTTOM BAR -->
+  <!-- BOTTOM BAR -->
   <div class="bottombar">
     <button class="bottom-btn">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <!-- Avcı şapkası -->
         <path d="M4 14 C4 14 5 10 12 10 C19 10 20 14 20 14"/>
         <path d="M3 14 Q12 18 21 14"/>
         <path d="M9 10 C9 10 10 6 12 6 C14 6 15 10 15 10"/>
