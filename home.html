@@ -231,14 +231,27 @@
   <!-- İÇERİK -->
   <div class="content"></div>
 
-  <!-- BOTTOM BAR -->
+    <!-- BOTTOM BAR -->
   <div class="bottombar">
     <button class="bottom-btn">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Avcı şapkası -->
+        <path d="M4 14 C4 14 5 10 12 10 C19 10 20 14 20 14"/>
+        <path d="M3 14 Q12 18 21 14"/>
+        <path d="M9 10 C9 10 10 6 12 6 C14 6 15 10 15 10"/>
+        <line x1="3" y1="14" x2="2" y2="17"/>
+        <line x1="21" y1="14" x2="22" y2="17"/>
+        <path d="M2 17 Q12 21 22 17"/>
+      </svg>
+    </button>
+
+    <button class="bottom-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
         <polyline points="9 22 9 12 15 12 15 22"/>
       </svg>
     </button>
+
     <button class="bottom-btn profile-btn" onclick="window.location.href='profile.html'">
       <img id="bottom-photo" src="" alt="" />
     </button>
