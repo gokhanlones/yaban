@@ -1,0 +1,125 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --green-dark:  #1B4332;
+  --green-light: #52B788;
+  --white:       #FFFFFF;
+  --gray:        #6B7280;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: var(--green-dark);
+  color: var(--white);
+  min-height: 100vh;
+}
+
+#splash {
+  position: fixed;
+  inset: 0;
+  background: var(--green-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  transition: opacity 0.5s ease;
+}
+.splash-logo {
+  font-size: 52px;
+  font-weight: 900;
+  letter-spacing: 8px;
+}
+.splash-tagline {
+  font-size: 13px;
+  color: var(--green-light);
+  letter-spacing: 2px;
+  margin-top: 8px;
+}
+.splash-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--green-light);
+  border-radius: 50%;
+  margin-top: 40px;
+  animation: pulse 1.2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.8); }
+}
+
+#main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.auth-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 20px;
+  padding: 40px 32px;
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+}
+.auth-logo {
+  font-size: 36px;
+  font-weight: 900;
+  letter-spacing: 6px;
+  margin-bottom: 4px;
+}
+.auth-tagline {
+  font-size: 13px;
+  color: var(--green-light);
+  letter-spacing: 1px;
+  margin-bottom: 40px;
+}
+.btn-google {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 20px;
+  background: var(--white);
+  color: #1F2937;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+.btn-google:hover { transform: translateY(-1px); }
+.btn-google:disabled { opacity: 0.6; cursor: not-allowed; }
+.btn-google svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+#no-connection {
+  position: fixed;
+  inset: 0;
+  background: var(--green-dark);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  z-index: 9999;
+}
+#no-connection .icon { font-size: 64px; margin-bottom: 20px; }
+#no-connection h2 { font-size: 22px; font-weight: 700; margin-bottom: 10px; }
+#no-connection p { color: var(--gray); font-size: 14px; line-height: 1.6; margin-bottom: 32px; }
+.retry-btn {
+  padding: 14px 32px;
+  background: var(--green-light);
+  color: var(--green-dark);
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
