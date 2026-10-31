@@ -9,7 +9,6 @@
 
     :root {
       --green-dark:  #1B4332;
-      --green-mid:   #2D6A4F;
       --green-light: #52B788;
       --white:       #FFFFFF;
       --gray:        #6B7280;
@@ -24,7 +23,7 @@
       flex-direction: column;
     }
 
-    /* ── BANNER ── */
+    /* BANNER */
     .banner {
       background: var(--green-dark);
       display: flex;
@@ -60,11 +59,9 @@
       font-weight: 900;
       letter-spacing: 6px;
     }
-    .banner-placeholder {
-      width: 38px;
-    }
+    .banner-placeholder { width: 38px; }
 
-    /* ── SIDEBAR ── */
+    /* SIDEBAR */
     .sidebar-overlay {
       position: fixed;
       inset: 0;
@@ -74,10 +71,8 @@
       opacity: 0;
       transition: opacity 0.3s;
     }
-    .sidebar-overlay.open {
-      display: block;
-      opacity: 1;
-    }
+    .sidebar-overlay.open { display: block; opacity: 1; }
+
     .sidebar {
       position: fixed;
       top: 0;
@@ -91,9 +86,8 @@
       display: flex;
       flex-direction: column;
     }
-    .sidebar.open {
-      left: 0;
-    }
+    .sidebar.open { left: 0; }
+
     .sidebar-header {
       padding: 56px 20px 24px;
       border-bottom: 1px solid rgba(255,255,255,0.08);
@@ -122,19 +116,10 @@
       border-radius: 50%;
       object-fit: cover;
     }
-    .sidebar-user .name {
-      font-size: 14px;
-      font-weight: 600;
-    }
-    .sidebar-user .email {
-      font-size: 11px;
-      color: var(--gray);
-      margin-top: 2px;
-    }
-    .sidebar-menu {
-      flex: 1;
-      padding: 12px 0;
-    }
+    .sidebar-user .name { font-size: 14px; font-weight: 600; }
+    .sidebar-user .email { font-size: 11px; color: var(--gray); margin-top: 2px; }
+
+    .sidebar-menu { flex: 1; padding: 12px 0; }
     .sidebar-item {
       display: flex;
       align-items: center;
@@ -149,9 +134,7 @@
       width: 100%;
       text-align: left;
     }
-    .sidebar-item:hover {
-      background: rgba(255,255,255,0.06);
-    }
+    .sidebar-item:hover { background: rgba(255,255,255,0.06); }
     .sidebar-item .item-icon { font-size: 18px; }
     .sidebar-bottom {
       padding: 12px 0;
@@ -159,14 +142,14 @@
     }
     .sidebar-item.logout { color: #F87171; }
 
-    /* ── İÇERİK ── */
+    /* İÇERİK */
     .content {
       flex: 1;
       padding: 24px 16px;
       padding-bottom: 80px;
     }
 
-    /* ── BOTTOM BAR ── */
+    /* BOTTOM BAR */
     .bottombar {
       position: fixed;
       bottom: 0;
@@ -177,7 +160,8 @@
       border-top: 1px solid rgba(255,255,255,0.08);
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
+      padding: 0 40px;
       z-index: 100;
     }
     .bottom-btn {
@@ -185,19 +169,18 @@
       border: none;
       color: var(--white);
       display: flex;
-      flex-direction: column;
       align-items: center;
-      gap: 4px;
+      justify-content: center;
       cursor: pointer;
-      padding: 8px 24px;
+      padding: 8px;
     }
-    .bottom-btn svg {
-      width: 24px;
-      height: 24px;
-    }
-    .bottom-btn span {
-      font-size: 10px;
-      color: var(--green-light);
+    .bottom-btn svg { width: 26px; height: 26px; }
+    .profile-btn img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--green-light);
     }
   </style>
 </head>
@@ -246,9 +229,7 @@
   </div>
 
   <!-- İÇERİK -->
-  <div class="content">
-    <!-- Sonraki adımda burası dolacak -->
-  </div>
+  <div class="content"></div>
 
   <!-- BOTTOM BAR -->
   <div class="bottombar">
@@ -257,7 +238,9 @@
         <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
         <polyline points="9 22 9 12 15 12 15 22"/>
       </svg>
-      <span>Ana Sayfa</span>
+    </button>
+    <button class="bottom-btn profile-btn" onclick="window.location.href='profile.html'">
+      <img id="bottom-photo" src="" alt="" />
     </button>
   </div>
 
@@ -284,6 +267,7 @@
       document.getElementById('user-name').textContent  = user.displayName;
       document.getElementById('user-email').textContent = user.email;
       document.getElementById('user-photo').src         = user.photoURL;
+      document.getElementById('bottom-photo').src       = user.photoURL;
     });
 
     document.getElementById('logout-btn').addEventListener('click', async () => {
