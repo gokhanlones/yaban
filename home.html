@@ -3,36 +3,261 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Yaban — Ana Sayfa</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <title>Yaban</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --green-dark:  #1B4332;
+      --green-mid:   #2D6A4F;
+      --green-light: #52B788;
+      --white:       #FFFFFF;
+      --gray:        #6B7280;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--green-dark);
+      color: var(--white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── BANNER ── */
+    .banner {
+      background: var(--green-dark);
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      height: 56px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .hamburger {
+      background: none;
+      border: none;
+      color: var(--white);
+      cursor: pointer;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+    }
+    .banner-title {
+      flex: 1;
+      text-align: center;
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: 6px;
+    }
+    .banner-placeholder {
+      width: 38px;
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 200;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .sidebar-overlay.open {
+      display: block;
+      opacity: 1;
+    }
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -280px;
+      width: 280px;
+      height: 100%;
+      background: var(--green-dark);
+      border-right: 1px solid rgba(255,255,255,0.08);
+      z-index: 300;
+      transition: left 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .sidebar.open {
+      left: 0;
+    }
+    .sidebar-header {
+      padding: 56px 20px 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .sidebar-header .logo {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: 4px;
+    }
+    .sidebar-header .tagline {
+      font-size: 11px;
+      color: var(--green-light);
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+    .sidebar-user {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .sidebar-user img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .sidebar-user .name {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .sidebar-user .email {
+      font-size: 11px;
+      color: var(--gray);
+      margin-top: 2px;
+    }
+    .sidebar-menu {
+      flex: 1;
+      padding: 12px 0;
+    }
+    .sidebar-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 20px;
+      cursor: pointer;
+      font-size: 15px;
+      transition: background 0.15s;
+      border: none;
+      background: none;
+      color: var(--white);
+      width: 100%;
+      text-align: left;
+    }
+    .sidebar-item:hover {
+      background: rgba(255,255,255,0.06);
+    }
+    .sidebar-item .item-icon { font-size: 18px; }
+    .sidebar-bottom {
+      padding: 12px 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .sidebar-item.logout { color: #F87171; }
+
+    /* ── İÇERİK ── */
+    .content {
+      flex: 1;
+      padding: 24px 16px;
+      padding-bottom: 80px;
+    }
+
+    /* ── BOTTOM BAR ── */
+    .bottombar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: var(--green-dark);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+    }
+    .bottom-btn {
+      background: none;
+      border: none;
+      color: var(--white);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      padding: 8px 24px;
+    }
+    .bottom-btn svg {
+      width: 24px;
+      height: 24px;
+    }
+    .bottom-btn span {
+      font-size: 10px;
+      color: var(--green-light);
+    }
+  </style>
 </head>
 <body>
 
-  <div style="
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 24px;
-  ">
-    <div style="font-size:36px;font-weight:900;letter-spacing:6px;margin-bottom:8px;">
-      YABAN
+  <!-- SIDEBAR OVERLAY -->
+  <div class="sidebar-overlay" id="overlay" onclick="closeSidebar()"></div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">YABAN</div>
+      <div class="tagline">AVCI'NIN REHBERİ</div>
     </div>
-    <div id="welcome" style="color:#52B788;margin-bottom:40px;">
-      Hoş geldin!
+
+    <div class="sidebar-user">
+      <img id="user-photo" src="" alt="" />
+      <div>
+        <div class="name" id="user-name">...</div>
+        <div class="email" id="user-email">...</div>
+      </div>
     </div>
-    <button id="logout-btn" style="
-      padding: 12px 24px;
-      background: rgba(255,255,255,0.1);
-      color: white;
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 12px;
-      font-size: 14px;
-      cursor: pointer;
-    ">
-      Çıkış Yap
+
+    <div class="sidebar-menu">
+      <button class="sidebar-item">
+        <span class="item-icon">⚙️</span> Ayarlar
+      </button>
+    </div>
+
+    <div class="sidebar-bottom">
+      <button class="sidebar-item logout" id="logout-btn">
+        <span class="item-icon">🚪</span> Çıkış Yap
+      </button>
+    </div>
+  </div>
+
+  <!-- BANNER -->
+  <div class="banner">
+    <button class="hamburger" onclick="openSidebar()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="banner-title">YABAN</div>
+    <div class="banner-placeholder"></div>
+  </div>
+
+  <!-- İÇERİK -->
+  <div class="content">
+    <!-- Sonraki adımda burası dolacak -->
+  </div>
+
+  <!-- BOTTOM BAR -->
+  <div class="bottombar">
+    <button class="bottom-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+        <polyline points="9 22 9 12 15 12 15 22"/>
+      </svg>
+      <span>Ana Sayfa</span>
     </button>
   </div>
 
@@ -55,18 +280,25 @@
     const auth = getAuth(app);
 
     onAuthStateChanged(auth, (user) => {
-      if (!user) {
-        window.location.href = 'index.html';
-        return;
-      }
-      document.getElementById('welcome').textContent =
-        'Hoş geldin, ' + user.displayName + '! 🎯';
+      if (!user) { window.location.href = 'index.html'; return; }
+      document.getElementById('user-name').textContent  = user.displayName;
+      document.getElementById('user-email').textContent = user.email;
+      document.getElementById('user-photo').src         = user.photoURL;
     });
 
     document.getElementById('logout-btn').addEventListener('click', async () => {
       await signOut(auth);
       window.location.href = 'index.html';
     });
+
+    window.openSidebar = () => {
+      document.getElementById('sidebar').classList.add('open');
+      document.getElementById('overlay').classList.add('open');
+    };
+    window.closeSidebar = () => {
+      document.getElementById('sidebar').classList.remove('open');
+      document.getElementById('overlay').classList.remove('open');
+    };
   </script>
 </body>
 </html>
