@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yaban — Ana Sayfa</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <div style="
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px;
+  ">
+    <div style="font-size:36px;font-weight:900;letter-spacing:6px;margin-bottom:8px;">
+      YABAN
+    </div>
+    <div id="welcome" style="color:#52B788;margin-bottom:40px;">
+      Hoş geldin!
+    </div>
+    <button id="logout-btn" style="
+      padding: 12px 24px;
+      background: rgba(255,255,255,0.1);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 12px;
+      font-size: 14px;
+      cursor: pointer;
+    ">
+      Çıkış Yap
+    </button>
+  </div>
+
+  <script type="module">
+    import { initializeApp }
+      from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut }
+      from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAMT-mHr3Debz426EdH4s1QOmtcbcMLRzk",
+      authDomain: "yaban-b00bd.firebaseapp.com",
+      projectId: "yaban-b00bd",
+      storageBucket: "yaban-b00bd.firebasestorage.app",
+      messagingSenderId: "919377752116",
+      appId: "1:919377752116:web:67f545c67931892ebf5a61"
+    };
+
+    const app  = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        window.location.href = 'index.html';
+        return;
+      }
+      document.getElementById('welcome').textContent =
+        'Hoş geldin, ' + user.displayName + '! 🎯';
+    });
+
+    document.getElementById('logout-btn').addEventListener('click', async () => {
+      await signOut(auth);
+      window.location.href = 'index.html';
+    });
+  </script>
+</body>
+</html>
