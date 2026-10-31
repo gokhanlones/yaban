@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yaban — Türler</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --green-dark:  #1B4332;
+      --green-light: #52B788;
+      --white:       #FFFFFF;
+      --gray:        #6B7280;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--green-dark);
+      color: var(--white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* BANNER */
+    .banner {
+      background: var(--green-dark);
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      height: 56px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .back-btn {
+      background: none;
+      border: none;
+      color: var(--white);
+      cursor: pointer;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+    }
+    .back-btn svg { width: 22px; height: 22px; }
+    .banner-title {
+      flex: 1;
+      text-align: center;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+    .banner-placeholder { width: 38px; }
+
+    /* İÇERİK */
+    .content {
+      flex: 1;
+      padding: 24px 16px;
+    }
+
+    /* HAYVAN GRID */
+    .species-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .species-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.15s;
+    }
+    .species-card:hover { transform: scale(1.02); }
+    .species-card img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+    }
+    .species-card .info {
+      padding: 10px 12px;
+    }
+    .species-card .name {
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .species-card .season {
+      font-size: 11px;
+      color: var(--green-light);
+      margin-top: 2px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BANNER -->
+  <div class="banner">
+    <button class="back-btn" onclick="window.location.href='home.html'">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+    </button>
+    <div class="banner-title">TÜRLER</div>
+    <div class="banner-placeholder"></div>
+  </div>
+
+  <!-- İÇERİK -->
+  <div class="content">
+    <div class="species-grid" id="species-grid">
+      <!-- Resimler buraya gelecek -->
+    </div>
+  </div>
+
+</body>
+</html>
