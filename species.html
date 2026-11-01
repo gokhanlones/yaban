@@ -6,7 +6,6 @@
   <title>Yaban — Türler</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     :root {
       --green-dark:  #1B4332;
       --green-light: #52B788;
@@ -14,7 +13,6 @@
       --gray:        #6B7280;
       --red:         #DC2626;
     }
-
     body {
       font-family: 'Segoe UI', system-ui, sans-serif;
       background: var(--green-dark);
@@ -23,8 +21,6 @@
       display: flex;
       flex-direction: column;
     }
-
-    /* BANNER */
     .banner {
       background: var(--green-dark);
       display: flex;
@@ -61,8 +57,6 @@
       letter-spacing: 6px;
     }
     .banner-placeholder { width: 38px; }
-
-    /* SIDEBAR */
     .sidebar-overlay {
       position: fixed;
       inset: 0;
@@ -73,7 +67,6 @@
       transition: opacity 0.3s;
     }
     .sidebar-overlay.open { display: block; opacity: 1; }
-
     .sidebar {
       position: fixed;
       top: 0;
@@ -88,22 +81,12 @@
       flex-direction: column;
     }
     .sidebar.open { left: 0; }
-
     .sidebar-header {
       padding: 56px 20px 24px;
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
-    .sidebar-header .logo {
-      font-size: 22px;
-      font-weight: 900;
-      letter-spacing: 4px;
-    }
-    .sidebar-header .tagline {
-      font-size: 11px;
-      color: var(--green-light);
-      letter-spacing: 1px;
-      margin-top: 4px;
-    }
+    .sidebar-header .logo { font-size: 22px; font-weight: 900; letter-spacing: 4px; }
+    .sidebar-header .tagline { font-size: 11px; color: var(--green-light); letter-spacing: 1px; margin-top: 4px; }
     .sidebar-user {
       display: flex;
       align-items: center;
@@ -111,15 +94,9 @@
       padding: 20px;
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
-    .sidebar-user img {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
+    .sidebar-user img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
     .sidebar-user .name { font-size: 14px; font-weight: 600; }
     .sidebar-user .email { font-size: 11px; color: var(--gray); margin-top: 2px; }
-
     .sidebar-menu { flex: 1; padding: 12px 0; }
     .sidebar-item {
       display: flex;
@@ -136,13 +113,8 @@
     }
     .sidebar-item:hover { background: rgba(255,255,255,0.06); }
     .sidebar-item.active { color: var(--green-light); font-weight: 700; }
-    .sidebar-bottom {
-      padding: 12px 0;
-      border-top: 1px solid rgba(255,255,255,0.08);
-    }
+    .sidebar-bottom { padding: 12px 0; border-top: 1px solid rgba(255,255,255,0.08); }
     .sidebar-item.logout { color: #F87171; }
-
-    /* İÇERİK */
     .content {
       flex: 1;
       padding: 16px;
@@ -151,8 +123,11 @@
       flex-direction: column;
       gap: 12px;
     }
-
-    /* HAYVAN KARTI */
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: var(--gray);
+    }
     .species-card {
       background: rgba(255,255,255,0.06);
       border: 1px solid rgba(255,255,255,0.10);
@@ -163,7 +138,6 @@
       position: relative;
     }
     .species-card:active { transform: scale(0.99); }
-
     .species-card img {
       width: 100%;
       aspect-ratio: 2 / 1;
@@ -171,8 +145,6 @@
       border-radius: 5px 5px 0 0;
       display: block;
     }
-
-    /* ROZET */
     .badge {
       position: absolute;
       top: 10px;
@@ -183,49 +155,19 @@
       font-weight: 700;
       letter-spacing: 0.5px;
     }
-    .badge-free {
-      background: var(--green-light);
-      color: var(--green-dark);
-    }
-    .badge-protected {
-      background: var(--red);
-      color: var(--white);
-    }
-
-    /* KART BİLGİ */
+    .badge-free { background: var(--green-light); color: var(--green-dark); }
+    .badge-protected { background: var(--red); color: var(--white); }
     .card-info {
       padding: 12px 14px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    .card-left .name {
-      font-size: 15px;
-      font-weight: 700;
-    }
-    .card-left .season {
-      font-size: 12px;
-      color: var(--green-light);
-      margin-top: 2px;
-    }
-    .card-left .protected-text {
-      font-size: 12px;
-      color: var(--red);
-      margin-top: 2px;
-    }
-    .card-right .limit {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--green-light);
-      text-align: right;
-    }
-    .card-right .limit-label {
-      font-size: 10px;
-      color: var(--gray);
-      text-align: right;
-    }
-
-    /* BOTTOM BAR */
+    .card-left .name { font-size: 15px; font-weight: 700; }
+    .card-left .season { font-size: 12px; color: var(--green-light); margin-top: 2px; }
+    .card-left .protected-text { font-size: 12px; color: var(--red); margin-top: 2px; }
+    .card-right .limit { font-size: 13px; font-weight: 700; color: var(--green-light); text-align: right; }
+    .card-right .limit-label { font-size: 10px; color: var(--gray); text-align: right; }
     .bottombar {
       position: fixed;
       bottom: 0;
@@ -294,158 +236,8 @@
     <div class="banner-placeholder"></div>
   </div>
 
-  <div class="content">
-
-    <div class="species-card">
-      <img src="images/bildircin.jpg" alt="Bıldırcın" />
-      <span class="badge badge-free">SERBEST</span>
-      <div class="card-info">
-        <div class="card-left">
-          <div class="name">Bıldırcın</div>
-          <div class="season">18 Ağu — 29 Kas</div>
-        </div>
-        <div class="card-right">
-          <div class="limit">10</div>
-          <div class="limit-label">günlük limit</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="species-card">
-      <img src="images/uveyik.jpg" alt="Üveyik" />
-      <span class="badge badge-free">SERBEST</span>
-      <div class="card-info">
-        <div class="card-left">
-          <div class="name">Üveyik</div>
-          <div class="season">18 Ağu — 29 Kas</div>
-        </div>
-        <div class="card-right">
-          <div class="limit">3</div>
-          <div class="limit-label">günlük limit</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="species-card">
-      <img src="images/karatavuk.jpg" alt="Karatavuk" />
-      <span class="badge badge-free">SERBEST</span>
-      <div class="card-info">
-        <div class="card-left">
-          <div class="name">Karatavuk</div>
-          <div class="season">24 Eki — 7 Mar</div>
-        </div>
-        <div class="card-right">
-          <div class="limit">3</div>
-          <div class="limit-label">günlük limit</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="species-card">
-      <img src="images/oter-ardic.jpg" alt="Öter Ardıç" />
-      <span class="badge badge-free">SERBEST</span>
-      <div class="card-info">
-        <div class="card-left">
-          <div class="name">Öter Ardıç</div>
-          <div class="season">24 Eki — 7 Mar</div>
-        </div>
-        <div class="card-right">
-          <div class="limit">3</div>
-          <div class="limit-label">günlük limit</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="species-card">
-      <img src="images/alakarga.jpg" alt="Alakarga" />
-      <span class="badge badge-free">SERBEST</span>
-      <div class="card-info">
-        <div class="card-left">
-          <div class="name">Alakarga</div>
-          <div class="season">18 Ağu — 7 Mar</div>
-        </div>
-        <div class="card-right">
-          <div class="limit">10</div>
-          <div class="limit-label">günlük limit</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="species-card">
-      <img src="images/tahtali.jpg" alt="Tahtalı" />
-      <span class="badge badge-free">SERBEST</span>
-      <div class="card-info">
-        <div class="card-left">
-          <div class="name">Tahtalı</div>
-          <div class="season">24 Eki — 7 Mar</div>
-        </div>
-        <div class="card-right">
-          <div class="limit">6</div>
-          <div class="limit-label">günlük limit</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="species-card">
-      <img src="images/kaya-guvercini.jpg" alt="Kaya Güvercini" />
-      <span class="badge badge-free">SERBEST</span>
-      <div class="card-info">
-        <div class="card-left">
-          <div class="name">Kaya Güvercini</div>
-          <div class="season">24 Eki — 7 Mar</div>
-        </div>
-        <div class="card-right">
-          <div class="limit">6</div>
-          <div class="limit-label">günlük limit</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="species-card">
-      <img src="images/culluk.jpg" alt="Çulluk" />
-      <span class="badge badge-free">SERBEST</span>
-      <div class="card-info">
-        <div class="card-left">
-          <div class="name">Çulluk</div>
-          <div class="season">24 Eki — 7 Mar</div>
-        </div>
-        <div class="card-right">
-          <div class="limit">5</div>
-          <div class="limit-label">günlük limit</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="species-card">
-      <img src="images/saksagan.jpg" alt="Saksağan" />
-      <span class="badge badge-free">SERBEST</span>
-      <div class="card-info">
-        <div class="card-left">
-          <div class="name">Saksağan</div>
-          <div class="season">18 Ağu — 7 Mar</div>
-        </div>
-        <div class="card-right">
-          <div class="limit">Limitsiz</div>
-          <div class="limit-label">günlük limit</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="species-card">
-      <img src="images/sakarmeke.jpg" alt="Sakarmeke" />
-      <span class="badge badge-free">SERBEST</span>
-      <div class="card-info">
-        <div class="card-left">
-          <div class="name">Sakarmeke</div>
-          <div class="season">24 Eki — 7 Mar</div>
-        </div>
-        <div class="card-right">
-          <div class="limit">4</div>
-          <div class="limit-label">günlük limit</div>
-        </div>
-      </div>
-    </div>
-
+  <div class="content" id="content">
+    <div class="loading">Yükleniyor...</div>
   </div>
 
   <div class="bottombar">
@@ -471,8 +263,12 @@
   </div>
 
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+    import { initializeApp }
+      from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut }
+      from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+    import { getFirestore, collection, getDocs, orderBy, query }
+      from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyAMT-mHr3Debz426EdH4s1QOmtcbcMLRzk",
@@ -485,14 +281,55 @@
 
     const app  = initializeApp(firebaseConfig);
     const auth = getAuth(app);
+    const db   = getFirestore(app);
 
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, async (user) => {
       if (!user) { window.location.href = 'index.html'; return; }
       document.getElementById('user-name').textContent  = user.displayName;
       document.getElementById('user-email').textContent = user.email;
       document.getElementById('user-photo').src         = user.photoURL;
       document.getElementById('bottom-photo').src       = user.photoURL;
+      await loadSpecies();
     });
+
+    async function loadSpecies() {
+      const content = document.getElementById('content');
+      try {
+        const q = query(collection(db, 'species'), orderBy('order'));
+        const snap = await getDocs(q);
+        content.innerHTML = '';
+
+        snap.forEach(doc => {
+          const s = doc.data();
+          const card = document.createElement('div');
+          card.className = 'species-card';
+          card.innerHTML = `
+            <img src="${s.image}" alt="${s.name}" />
+            <span class="badge ${s.status === 'free' ? 'badge-free' : 'badge-protected'}">
+              ${s.status === 'free' ? 'SERBEST' : 'KORUMA ALTINDA'}
+            </span>
+            <div class="card-info">
+              <div class="card-left">
+                <div class="name">${s.name}</div>
+                ${s.status === 'free'
+                  ? `<div class="season">${s.seasonStart} — ${s.seasonEnd}</div>`
+                  : `<div class="protected-text">Avlanması yasaktır</div>`
+                }
+              </div>
+              ${s.status === 'free' ? `
+              <div class="card-right">
+                <div class="limit">${s.dailyLimit}</div>
+                <div class="limit-label">günlük limit</div>
+              </div>` : ''}
+            </div>
+          `;
+          content.appendChild(card);
+        });
+
+      } catch(e) {
+        content.innerHTML = `<div class="loading">Hata: ${e.message}</div>`;
+      }
+    }
 
     document.getElementById('logout-btn').addEventListener('click', async () => {
       await signOut(auth);
