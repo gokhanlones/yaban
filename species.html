@@ -141,18 +141,38 @@
       border-radius: 5px 5px 0 0;
       display: block;
     }
+
+    /* ROZET */
     .badge {
       position: absolute;
       top: 10px;
       right: 10px;
-      padding: 4px 10px;
-      border-radius: 20px;
+      padding: 6px 12px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .badge-free { background: rgba(27,67,50,0.85); }
+    .badge-protected { background: rgba(220,38,38,0.85); }
+    .badge-label {
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.5px;
+      color: var(--green-light);
     }
-    .badge-free { background: var(--green-light); color: var(--green-dark); }
-    .badge-protected { background: var(--red); color: var(--white); }
+    .badge-protected .badge-label { color: var(--white); }
+    .badge-limit-title {
+      font-size: 10px;
+      color: var(--gray);
+      margin-top: 4px;
+    }
+    .badge-limit-value {
+      font-size: 16px;
+      font-weight: 900;
+      color: var(--white);
+      margin-top: 1px;
+    }
+
+    /* KART BİLGİ */
     .card-info {
       padding: 12px 14px;
       display: flex;
@@ -161,7 +181,8 @@
     }
     .card-name { font-size: 15px; font-weight: 700; }
     .card-season { font-size: 12px; color: var(--green-light); text-align: right; }
-    .card-protected { font-size: 12px; color: var(--red); text-align: right; }
+    .card-protected-text { font-size: 12px; color: var(--red); text-align: right; }
+
     .bottombar {
       position: fixed;
       bottom: 0;
@@ -297,16 +318,25 @@
           const s = doc.data();
           const card = document.createElement('div');
           card.className = 'species-card';
+
+          const badge = s.status === 'free'
+            ? `<div class="badge badge-free">
+                <div class="badge-label">SERBEST</div>
+                <div class="badge-limit-title">Günlük Limit</div>
+                <div class="badge-limit-value">${s.dailyLimit}</div>
+               </div>`
+            : `<div class="badge badge-protected">
+                <div class="badge-label">KORUMA ALTINDA</div>
+               </div>`;
+
           card.innerHTML = `
             <img src="${s.image}" alt="${s.name}" />
-            <span class="badge ${s.status === 'free' ? 'badge-free' : 'badge-protected'}">
-              ${s.status === 'free' ? 'SERBEST' : 'KORUMA ALTINDA'}
-            </span>
+            ${badge}
             <div class="card-info">
               <div class="card-name">${s.name}</div>
               ${s.status === 'free'
                 ? `<div class="card-season">${s.seasonStart} — ${s.seasonEnd}</div>`
-                : `<div class="card-protected">Avlanması yasaktır</div>`
+                : `<div class="card-protected-text">Avlanması yasaktır</div>`
               }
             </div>
           `;
