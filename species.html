@@ -319,7 +319,31 @@
           const card = document.createElement('div');
           card.className = 'species-card';
 
-          const badge = s.status === 'free'
+          const limitColors = {
+  'Limitsiz': '#00FF00',
+  '10': '#33FF00',
+  '9': '#66FF00',
+  '8': '#99FF00',
+  '7': '#CCFF00',
+  '6': '#FFFF00',
+  '5': '#FFCC00',
+  '4': '#FF9900',
+  '3': '#FF6600',
+  '2': '#FF3300',
+  '1': '#FF0000'
+};
+
+const badgeColor = limitColors[s.dailyLimit] || '#00FF00';
+
+const badge = s.status === 'free'
+  ? `<div class="badge badge-free" style="background:rgba(0,0,0,0.55);border-left:3px solid ${badgeColor};">
+      <div class="badge-label" style="color:${badgeColor};">SERBEST</div>
+      <div class="badge-limit-title">Günlük Limit</div>
+      <div class="badge-limit-value" style="color:${badgeColor};">${s.dailyLimit}</div>
+     </div>`
+  : `<div class="badge badge-protected">
+      <div class="badge-label">KORUMA ALTINDA</div>
+     </div>`;
             ? `<div class="badge badge-free">
                 <div class="badge-label">SERBEST</div>
                 <div class="badge-limit-title">Günlük Limit</div>
