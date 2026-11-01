@@ -141,21 +141,23 @@
       border-radius: 5px 5px 0 0;
       display: block;
     }
+
+    /* ROZET */
     .badge {
       position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
+      top: 10px;
       right: 10px;
       padding: 6px 12px;
       border-radius: 8px;
       text-align: center;
     }
-    .badge-free { background: rgba(0,0,0,0.55); }
+    .badge-free { background: rgba(27,67,50,0.85); }
     .badge-protected { background: rgba(220,38,38,0.85); }
     .badge-label {
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.5px;
+      color: var(--green-light);
     }
     .badge-protected .badge-label { color: var(--white); }
     .badge-limit-title {
@@ -169,6 +171,8 @@
       color: var(--white);
       margin-top: 1px;
     }
+
+    /* KART BİLGİ */
     .card-info {
       padding: 12px 14px;
       display: flex;
@@ -178,6 +182,7 @@
     .card-name { font-size: 15px; font-weight: 700; }
     .card-season { font-size: 12px; color: var(--green-light); text-align: right; }
     .card-protected-text { font-size: 12px; color: var(--red); text-align: right; }
+
     .bottombar {
       position: fixed;
       bottom: 0;
@@ -293,20 +298,6 @@
     const auth = getAuth(app);
     const db   = getFirestore(app);
 
-    const limitColors = {
-      'Limitsiz': '#00FF00',
-      '10': '#33FF00',
-      '9':  '#66FF00',
-      '8':  '#99FF00',
-      '7':  '#CCFF00',
-      '6':  '#FFFF00',
-      '5':  '#FFCC00',
-      '4':  '#FF9900',
-      '3':  '#FF6600',
-      '2':  '#FF3300',
-      '1':  '#FF0000'
-    };
-
     onAuthStateChanged(auth, async (user) => {
       if (!user) { window.location.href = 'index.html'; return; }
       document.getElementById('user-name').textContent  = user.displayName;
@@ -328,13 +319,11 @@
           const card = document.createElement('div');
           card.className = 'species-card';
 
-          const color = limitColors[String(s.dailyLimit)] || '#00FF00';
-
           const badge = s.status === 'free'
-            ? `<div class="badge badge-free" style="border-left: 3px solid ${color};">
-                <div class="badge-label" style="color:${color};">SERBEST</div>
+            ? `<div class="badge badge-free">
+                <div class="badge-label">SERBEST</div>
                 <div class="badge-limit-title">Günlük Limit</div>
-                <div class="badge-limit-value" style="color:${color};">${s.dailyLimit}</div>
+                <div class="badge-limit-value">${s.dailyLimit}</div>
                </div>`
             : `<div class="badge badge-protected">
                 <div class="badge-label">KORUMA ALTINDA</div>
